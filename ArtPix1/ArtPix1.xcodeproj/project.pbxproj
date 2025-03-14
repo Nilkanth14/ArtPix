@@ -17,6 +17,7 @@
 		C3493FCC2D83BDA700FFE11B /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C3493FCB2D83BDA700FFE11B /* FirebaseInAppMessaging-Beta */; };
 		C3493FCE2D83BDA700FFE11B /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C3493FCD2D83BDA700FFE11B /* FirebaseMessaging */; };
 		C3493FD02D83BDA700FFE11B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C3493FCF2D83BDA700FFE11B /* FirebaseStorage */; };
+		C3493FE32D83E53C00FFE11B /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = C3493FE22D83E53C00FFE11B /* FirebaseFirestoreCombine-Community */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 				C3493FCA2D83BDA700FFE11B /* FirebaseFunctions in Frameworks */,
 				C3493FD02D83BDA700FFE11B /* FirebaseStorage in Frameworks */,
 				C3493FBE2D83BDA700FFE11B /* FirebaseAnalytics in Frameworks */,
+				C3493FE32D83E53C00FFE11B /* FirebaseFirestoreCombine-Community in Frameworks */,
 				C3493FCC2D83BDA700FFE11B /* FirebaseInAppMessaging-Beta in Frameworks */,
 				C3493FC42D83BDA700FFE11B /* FirebaseCrashlytics in Frameworks */,
 				C3493FC22D83BDA700FFE11B /* FirebaseCore in Frameworks */,
@@ -145,6 +147,7 @@
 				C3493FCB2D83BDA700FFE11B /* FirebaseInAppMessaging-Beta */,
 				C3493FCD2D83BDA700FFE11B /* FirebaseMessaging */,
 				C3493FCF2D83BDA700FFE11B /* FirebaseStorage */,
+				C3493FE22D83E53C00FFE11B /* FirebaseFirestoreCombine-Community */,
 			);
 			productName = ArtPix1;
 			productReference = C3493F8F2D83BCB000FFE11B /* ArtPix1.app */;
@@ -656,6 +659,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C3493FBC2D83BDA700FFE11B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		C3493FE22D83E53C00FFE11B /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3493FBC2D83BDA700FFE11B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

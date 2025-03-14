@@ -1,24 +1,56 @@
-//
-//  ContentView.swift
-//  ArtPix1
-//
-//  Created by Nilkanth Amin on 2025-03-13.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showUploadView = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            GalleryView()
+                .tabItem {
+                    Label("Gallery", systemImage: "photo.on.rectangle")
+                }
+
+            MarketplaceView()
+                .tabItem {
+                    Label("Marketplace", systemImage: "cart")
+                }
+
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle")
+                }
         }
-        .padding()
+        .overlay(
+            HStack(spacing: 20) {
+                FloatingButton(icon: "map", action: {
+                    print("Map Button Tapped")
+                })
+
+                FloatingButton(icon: "plus", action: {
+                    showUploadView.toggle()
+                })
+                .sheet(isPresented: $showUploadView) {
+                    UploadArtworkView(showUploadView: $showUploadView)
+                }
+            }
+            .padding(.bottom, 80), alignment: .bottom
+        )
     }
 }
 
-#Preview {
-    ContentView()
+struct FloatingButton: View {
+    let icon: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: icon)
+                .font(.system(size: 24))
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .clipShape(Circle())
+                .shadow(radius: 4)
+        }
+    }
 }
