@@ -5,7 +5,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var errorMessage = ""
-    @State private var isLoggedIn = false
+    @AppStorage("isLoggedIn") private var isLoggedIn = false
 
     var body: some View {
         VStack(spacing: 20) {
@@ -31,10 +31,6 @@ struct LoginView: View {
 
             Text(errorMessage)
                 .foregroundColor(.red)
-            
-            NavigationLink(destination: GalleryView(), isActive: $isLoggedIn) {
-                EmptyView()
-            }
         }
         .padding()
     }
@@ -45,7 +41,7 @@ struct LoginView: View {
                 self.errorMessage = "Login Error: \(error.localizedDescription)"
             } else if authResult != nil {
                 self.errorMessage = ""
-                self.isLoggedIn = true // Navigate to GalleryView
+                self.isLoggedIn = true
             } else {
                 self.errorMessage = "Unknown error occurred. Try again."
             }

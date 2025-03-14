@@ -43,9 +43,22 @@
 		C3493FA92D83BCB200FFE11B /* ArtPix1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArtPix1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C3EF4E462D84F3FB00818A97 /* Exceptions for "ArtPix1" folder in "ArtPix1" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C3493F8E2D83BCB000FFE11B /* ArtPix1 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C3493F912D83BCB000FFE11B /* ArtPix1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C3EF4E462D84F3FB00818A97 /* Exceptions for "ArtPix1" folder in "ArtPix1" target */,
+			);
 			path = ArtPix1;
 			sourceTree = "<group>";
 		};
@@ -233,6 +246,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				C3493FBC2D83BDA700FFE11B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C3EF4E472D84F48000818A97 /* XCRemoteSwiftPackageReference "mapbox-search-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C3493F902D83BCB000FFE11B /* Products */;
@@ -438,6 +452,7 @@
 				DEVELOPMENT_TEAM = T6TXU4FD6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArtPix1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -467,6 +482,7 @@
 				DEVELOPMENT_TEAM = T6TXU4FD6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ArtPix1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -605,6 +621,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.9.0;
+			};
+		};
+		C3EF4E472D84F48000818A97 /* XCRemoteSwiftPackageReference "mapbox-search-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-search-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

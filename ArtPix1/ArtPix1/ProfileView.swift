@@ -2,7 +2,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileView: View {
-    @State private var isLoggedOut = false
+    @AppStorage("isLoggedIn") private var isLoggedIn = true
 
     var body: some View {
         VStack(spacing: 20) {
@@ -10,15 +10,19 @@ struct ProfileView: View {
                 .font(.headline)
 
             Button("Logout") {
-                try? Auth.auth().signOut()
-                isLoggedOut = true
+                logout()
             }
             .foregroundColor(.red)
-
-            NavigationLink(destination: LoginView(), isActive: $isLoggedOut) {
-                EmptyView()
-            }
         }
         .padding()
+    }
+
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            isLoggedIn = false
+        } catch {
+            print("Logout error: \(error.localizedDescription)")
+        }
     }
 }

@@ -1,7 +1,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("isLoggedIn") private var isLoggedIn = false
     @State private var showUploadView = false
+
+    var body: some View {
+        NavigationStack {
+            if isLoggedIn {
+                MainTabView(showUploadView: $showUploadView)
+            } else {
+                LoginView()
+            }
+        }
+    }
+}
+
+struct MainTabView: View {
+    @Binding var showUploadView: Bool
 
     var body: some View {
         TabView {

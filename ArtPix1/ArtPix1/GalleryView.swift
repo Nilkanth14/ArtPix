@@ -51,8 +51,6 @@ struct GalleryView: View {
                                 } placeholder: {
                                     ProgressView()
                                 }
-                            } else {
-                                Color.gray.frame(width: UIScreen.main.bounds.width / 2 - 24, height: 180).cornerRadius(12)
                             }
                             Text(artwork.title)
                                 .font(.headline)
@@ -65,12 +63,12 @@ struct GalleryView: View {
             }
         }
         .onAppear {
-            fetchArtworks()
+            listenToArtworks()
         }
     }
 
-    func fetchArtworks() {
-        Firestore.firestore().collection("artworks").getDocuments { snapshot, error in
+    func listenToArtworks() {
+        Firestore.firestore().collection("artworks").addSnapshotListener { snapshot, error in
             if let error = error {
                 self.errorMessage = "Failed to fetch artworks: \(error.localizedDescription)"
                 return
