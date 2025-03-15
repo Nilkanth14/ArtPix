@@ -7,4 +7,5 @@ struct Artwork: Identifiable, Codable {
     var description: String
     var price: Double
     var imageURL: String
+    var address: String 
 }
