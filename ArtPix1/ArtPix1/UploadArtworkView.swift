@@ -111,7 +111,8 @@ struct UploadArtworkView: View {
                             .padding()
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(10)
-                            .onChange(of: address) { newValue in
+                            // Fixed onChange for iOS 17+
+                            .onChange(of: address) { _, newValue in
                                 searchCompleter.search(query: newValue)
                                 if !newValue.isEmpty {
                                     showSuggestions = true
@@ -153,11 +154,12 @@ struct UploadArtworkView: View {
                             .frame(height: min(CGFloat(searchCompleter.results.count * 50), 200))
                         }
                         
-                        // Map preview when location is selected
-                        if mapIsVisible, let _ = selectedLocation {
+                        // Map preview when location is selected (Updated for iOS 17+)
+                        if mapIsVisible, let location = selectedLocation {
                             VStack {
-                                Map(coordinateRegion: $mapRegion, annotationItems: [MapPoint(coordinate: selectedLocation!)]) { point in
-                                    MapMarker(coordinate: point.coordinate, tint: .red)
+                                Map {
+                                    Marker("Location", coordinate: location)
+                                        .tint(.red)
                                 }
                                 .frame(height: 180)
                                 .cornerRadius(10)
@@ -202,7 +204,7 @@ struct UploadArtworkView: View {
                                 Text("$")
                                     .foregroundColor(.gray)
                                     .padding(.leading, 10)
-                                TextField("0.00", value: $price, formatter: NumberFormatter())
+                                TextField("0.00", value: $price, format: .number)
                                     .keyboardType(.decimalPad)
                             }
                             .padding(.vertical, 10)
@@ -326,12 +328,6 @@ struct UploadArtworkView: View {
     }
 }
 
-// Helper struct for the map
-struct MapPoint: Identifiable {
-    let id = UUID()
-    let coordinate: CLLocationCoordinate2D
-}
-
 // MARK: - Address Search Completer
 class AddressSearchCompleter: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
     @Published var results: [MKLocalSearchCompletion] = []
@@ -357,3 +353,4 @@ class AddressSearchCompleter: NSObject, ObservableObject, MKLocalSearchCompleter
         print("Address search error: \(error.localizedDescription)")
     }
 }
+

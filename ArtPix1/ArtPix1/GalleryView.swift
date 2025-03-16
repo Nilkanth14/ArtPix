@@ -6,64 +6,69 @@ struct GalleryView: View {
     @State private var errorMessage = ""
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Text("ArtPix1")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.purple)
+        NavigationView {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
+                    Text("ArtPix1")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.purple)
 
-                Spacer()
+                    Spacer()
 
-                Button(action: {
-                    print("Notifications Tapped")
-                }) {
-                    Image(systemName: "bell")
-                        .font(.title2)
-                }
-            }
-            .padding([.horizontal, .top])
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    Text("#Nature")
-                    Text("#Photography")
-                    Text("#Artworks")
-                    Text("#Trending")
-                }
-                .padding(.horizontal)
-                .foregroundColor(.blue)
-            }
-
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                    ForEach(artworks) { artwork in
-                        VStack(alignment: .leading, spacing: 8) {
-                            if let imageUrl = URL(string: artwork.imageURL) {
-                                AsyncImage(url: imageUrl) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: UIScreen.main.bounds.width / 2 - 24, height: 180)
-                                        .clipped()
-                                        .cornerRadius(12)
-                                        .shadow(radius: 5)
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                            }
-                            Text(artwork.title)
-                                .font(.headline)
-                                .lineLimit(1)
-                                .padding(.horizontal, 4)
-                        }
+                    Button(action: {
+                        print("Notifications Tapped")
+                    }) {
+                        Image(systemName: "bell")
+                            .font(.title2)
                     }
                 }
-                .padding(.horizontal)
+                .padding([.horizontal, .top])
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        Text("#Nature")
+                        Text("#Photography")
+                        Text("#Artworks")
+                        Text("#Trending")
+                    }
+                    .padding(.horizontal)
+                    .foregroundColor(.blue)
+                }
+
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                        ForEach(artworks) { artwork in
+                            NavigationLink(destination: ArtworkDetailView(artwork: artwork)) {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    if let imageUrl = URL(string: artwork.imageURL) {
+                                        AsyncImage(url: imageUrl) { phase in
+                                            switch phase {
+                                            case .success(let image):
+                                                WatermarkedImage(image: image)
+                                                    .frame(width: UIScreen.main.bounds.width / 2 - 24, height: 180)
+                                                    .clipped()
+                                                    .cornerRadius(12)
+                                                    .shadow(radius: 5)
+                                            default:
+                                                ProgressView()
+                                            }
+                                        }
+                                    }
+                                    Text(artwork.title)
+                                        .font(.headline)
+                                        .lineLimit(1)
+                                        .padding(.horizontal, 4)
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                }
             }
-        }
-        .onAppear {
-            listenToArtworks()
+            .onAppear {
+                listenToArtworks()
+            }
         }
     }
 
