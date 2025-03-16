@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to suggest addresses.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need your location to provide better suggestions.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location to provide better suggestions.</string>
+
+    <key>FirebaseInAppMessagingAutomaticDataCollectionEnabled</key>
+    <false/>
+    <key>FirebaseAutomaticScreenReportingEnabled</key>
+    <false/>
+
+
+</dict>
+</plist>
